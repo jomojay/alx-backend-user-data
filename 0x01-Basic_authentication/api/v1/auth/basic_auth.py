@@ -10,6 +10,7 @@ import base64
 import binascii
 from models.base import DATA
 
+
 class BasicAuth(Auth):
     """
     class BasicAuth
@@ -69,7 +70,6 @@ class BasicAuth(Auth):
         if not user.is_valid_password(user_pwd):
             return None
         return user
-
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
