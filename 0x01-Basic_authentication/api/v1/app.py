@@ -10,7 +10,7 @@ import os
 
 
 app = Flask(__name__)
-app.register_blueprint(app_views)
+app.register_blueprint(app_views, methods=['GET', 'POST', 'PUT', 'DELETE'])
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 auth = None
@@ -37,10 +37,10 @@ def filter_request():
     if not auth.require_auth(request.path, excluded_paths):
         return
 
-    if auth.authorization_header(request) is None:
+    if not auth.authorization_header(request):
         abort(401)
 
-    if auth.current_user(request) is None:
+    if not auth.current_user(request):
         abort(403)
 
 
