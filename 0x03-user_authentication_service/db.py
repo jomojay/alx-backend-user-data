@@ -2,6 +2,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm.session import Session
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.orm.exc import NoResultFound
 from user import Base, User
@@ -16,7 +17,7 @@ class DB:
     DB class.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Constructor.
         """
@@ -26,7 +27,7 @@ class DB:
         self.__session = None
 
     @property
-    def _session(self):
+    def _session(self) -> Session:
         """
         _session.
         """
